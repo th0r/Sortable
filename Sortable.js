@@ -659,6 +659,8 @@
 				ghostRect = ghostEl.getBoundingClientRect();
 				_css(ghostEl, 'width', rect.width * 2 - ghostRect.width);
 				_css(ghostEl, 'height', rect.height * 2 - ghostRect.height);
+
+				_dispatchEvent(this, rootEl, 'ghostCreated', ghostEl);
 			}
 		},
 
@@ -1332,6 +1334,7 @@
 		evt.from = fromEl || rootEl;
 		evt.item = targetEl || rootEl;
 		evt.clone = cloneEl;
+		evt.ghost = ghostEl;
 
 		evt.oldIndex = startIndex;
 		evt.newIndex = newIndex;

@@ -271,6 +271,7 @@
 			ghostClass: 'sortable-ghost',
 			chosenClass: 'sortable-chosen',
 			dragClass: 'sortable-drag',
+      documentClass: 'sortable-active',
 			ignore: 'a, img',
 			filter: null,
 			preventOnFilter: true,
@@ -535,6 +536,7 @@
 				// Apply effect
 				_toggleClass(dragEl, options.ghostClass, true);
 				_toggleClass(dragEl, options.dragClass, false);
+        _toggleClass(document.documentElement, options.documentClass, true);
 
 				Sortable.active = this;
 
@@ -1012,7 +1014,8 @@
 							newIndex = oldIndex;
 						}
 
-						_dispatchEvent(this, rootEl, 'end', dragEl, parentEl, rootEl, oldIndex, newIndex, evt);
+            _toggleClass(document.documentElement, options.documentClass, false);
+            _dispatchEvent(this, rootEl, 'end', dragEl, parentEl, rootEl, oldIndex, newIndex, evt);
 
 						// Save sorting
 						this.save();
